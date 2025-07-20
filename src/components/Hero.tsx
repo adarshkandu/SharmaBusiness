@@ -18,7 +18,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, scrollToSection }) => {
   };
 
   return (
-    <section id="home" className="pt-16 min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="pt-16 min-h-screen flex items-center justify-center relative overflow-hidden scroll-mt-20">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-purple-500/10" />
         <motion.div 

@@ -22,7 +22,7 @@ const About: React.FC<AboutProps> = ({ isDark }) => {
   };
 
   return (
-    <section id="about" className={`py-16 ${isDark ? 'bg-gray-800/50' : 'bg-blue-50/30'}`}>
+    <section id="about" className={`py-16 ${isDark ? 'bg-gray-800/50' : 'bg-blue-50/30'} scroll-mt-20`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-16"

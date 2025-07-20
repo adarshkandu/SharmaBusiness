@@ -55,7 +55,7 @@ const Brands: React.FC<BrandsProps> = ({ isDark }) => {
   };
 
   return (
-    <section id="brands" className="py-12">
+    <section id="brands" className="py-12 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="mb-8"

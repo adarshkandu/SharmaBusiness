@@ -22,7 +22,7 @@ const Mission: React.FC<MissionProps> = ({ isDark }) => {
   };
 
   return (
-    <section id="mission" className={`py-12 ${isDark ? 'bg-gray-800/50' : 'bg-blue-50/40'}`}>
+    <section id="mission" className={`py-12 ${isDark ? 'bg-gray-800/50' : 'bg-blue-50/40'} scroll-mt-20`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="mb-8"

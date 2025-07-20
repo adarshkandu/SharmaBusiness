@@ -26,7 +26,7 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0c1b30] text-white py-12 border-t border-[#1e2f4a]">
+    <footer className="bg-[#0c1b30] text-white py-12 border-t border-[#1e2f4a] scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="grid lg:grid-cols-4 gap-8"
