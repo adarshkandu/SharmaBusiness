@@ -10,7 +10,6 @@ interface NavbarProps {
   navbarBg: boolean;
   toggleTheme: () => void;
   setIsMenuOpen: (open: boolean) => void;
-  scrollToSection: (section: string) => void;
   setActiveSection: (section: string) => void;
 }
 
@@ -21,7 +20,6 @@ const Navbar: React.FC<NavbarProps> = ({
   navbarBg,
   toggleTheme,
   setIsMenuOpen,
-  scrollToSection,
   setActiveSection,
 }) => {
   const navLinks = [
@@ -47,9 +45,7 @@ const Navbar: React.FC<NavbarProps> = ({
 
   // Mobile scroll + close hamburger
   const handleMobileClick = (id: string) => {
-    setIsMenuOpen(false); // close first
-
-    // slight delay to allow DOM update before scroll
+    setIsMenuOpen(false);
     setTimeout(() => {
       const element = document.getElementById(id);
       if (element) {
@@ -57,7 +53,7 @@ const Navbar: React.FC<NavbarProps> = ({
         window.scrollTo({ top: y, behavior: 'smooth' });
         setActiveSection(id);
       }
-    }, 50); // minimum delay to allow menu close
+    }, 100);
   };
 
   return (
@@ -75,20 +71,16 @@ const Navbar: React.FC<NavbarProps> = ({
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div
+          {/* Logo + External Link */}
+          <a
+            href="https://adarshkandu.vercel.app" rel="noopener noreferrer"
             className="flex items-center space-x-3 cursor-pointer"
-            onClick={() => {
-              scrollToSection('home');
-              setActiveSection('home');
-              setIsMenuOpen(false);
-            }}
           >
             <img src={logo} alt="Logo" className="w-12 h-12 object-contain" />
             <span className="hidden md:inline text-xl font-bold bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">
               Sharma Business
             </span>
-          </div>
+          </a>
 
           {/* Desktop Links */}
           <div className="hidden lg:flex items-center space-x-1">
