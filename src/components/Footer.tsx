@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { HiPlay, HiTruck, HiTrendingUp } from 'react-icons/hi';
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
-import logo from "../assets/logo.png"
+import logo from "../assets/logo.png";
 
 interface FooterProps {
   scrollToSection: (section: string) => void;
@@ -14,13 +14,13 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
     { id: 'vision', label: 'Vision' },
     { id: 'mission', label: 'Mission' },
     { id: 'brands', label: 'Brands' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'contact', label: 'Contact' },
   ];
 
   const brands = [
     { name: 'FME', icon: HiPlay },
     { name: 'VaHaN', icon: HiTruck },
-    { name: 'GC', icon: HiTrendingUp }
+    { name: 'GC', icon: HiTrendingUp },
   ];
 
   const currentYear = new Date().getFullYear();
@@ -29,15 +29,16 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
     <footer className="bg-[#0c1b30] text-white py-12 border-t border-[#1e2f4a] scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="grid lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <div className="lg:col-span-2">
+          {/* Sharma Business - Always on top in mobile, spans 2 columns on large */}
+          <div className="lg:col-span-2 md:col-span-3">
             <div className="flex items-center space-x-3 mb-4">
-                <img className="h-12 text-white" src={logo} alt="logo" />
+              <img className="h-12 text-white" src={logo} alt="logo" />
               <div>
                 <span className="text-xl font-bold text-white">Sharma Business</span>
                 <p className="text-sm text-gray-300">Excellence in Innovation</p>
@@ -60,37 +61,46 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
             </div>
           </div>
 
-          <div>
-            <h4 className="text-base font-bold text-white mb-4">Our Brands</h4>
-            <ul className="space-y-2">
-              {brands.map((brand, index) => (
-                <li key={index}>
-                  <a href="#brands" className="text-sm flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200">
-                    <brand.icon className="w-4 h-4" />
-                    <span>{brand.name}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Nested grid for mobile view: Brands & Links side-by-side */}
+          <div className="grid grid-cols-2 gap-8 md:col-span-3 lg:col-span-2">
+            {/* Our Brands */}
+            <div>
+              <h4 className="text-base font-bold text-white mb-4">Our Brands</h4>
+              <ul className="space-y-2">
+                {brands.map((brand, index) => (
+                  <li key={index}>
+                    <a
+                      href="#brands"
+                      className="text-sm flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200"
+                    >
+                      <brand.icon className="w-4 h-4" />
+                      <span>{brand.name}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          <div>
-            <h4 className="text-base font-bold text-white mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              {navLinks.map((link) => (
-                <li key={link.id}>
-                  <button
-                    onClick={() => scrollToSection(link.id)}
-                    className="text-sm text-gray-300 hover:text-white transition-colors duration-200"
-                  >
-                    {link.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-base font-bold text-white mb-4">Quick Links</h4>
+              <ul className="space-y-2">
+                {navLinks.map((link) => (
+                  <li key={link.id}>
+                    <button
+                      onClick={() => scrollToSection(link.id)}
+                      className="text-sm text-gray-300 hover:text-white transition-colors duration-200"
+                    >
+                      {link.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </motion.div>
 
+        {/* Bottom copyright */}
         <motion.div
           className="border-t mt-8 pt-6 border-[#1e2f4a]"
           initial={{ opacity: 0 }}

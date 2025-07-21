@@ -60,17 +60,26 @@ const Brands: React.FC<BrandsProps> = ({ isDark }) => {
         {/* Top Section: ICON + HEADING + SUBTITLE */}
         <motion.div
           className="mb-12 max-w-3xl"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.15,
+              },
+            },
+          }}
         >
-          {/* Icon + Heading */}
+          {/* Icon + Heading with animation */}
           <div className="flex items-center mb-2">
             <motion.div
               className="relative w-fit mr-4"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
+              variants={{
+                hidden: { opacity: 0, scale: 0.8, rotate: -20 },
+                visible: { opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.5 } },
+              }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full blur opacity-75" />
               <div className="relative p-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full">
@@ -80,10 +89,10 @@ const Brands: React.FC<BrandsProps> = ({ isDark }) => {
 
             <motion.h2
               className={`text-3xl md:text-4xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
+              variants={{
+                hidden: { opacity: 0, x: -30 },
+                visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+              }}
             >
               Our Brands
             </motion.h2>
@@ -127,13 +136,12 @@ const Brands: React.FC<BrandsProps> = ({ isDark }) => {
               />
               <div className="relative z-10">
                 <div className="flex items-center justify-between mb-4">
-                  <motion.div
+                  {/* ✅ No hover rotation animation on icon below */}
+                  <div
                     className={`w-12 h-12 rounded-2xl bg-gradient-to-r ${brand.color} flex items-center justify-center shadow-lg`}
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.4 }}
                   >
                     <brand.icon className="w-6 h-6 text-white" />
-                  </motion.div>
+                  </div>
                   <div
                     className={`px-2 py-1 rounded-full text-xs font-medium ${
                       isDark ? 'bg-gray-700 text-gray-300' : 'bg-blue-50 text-blue-700'
