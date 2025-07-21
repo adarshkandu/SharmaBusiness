@@ -55,7 +55,7 @@ const Brands: React.FC<BrandsProps> = ({ isDark }) => {
   };
 
   return (
-    <section id="brands" className="py-12 scroll-mt-20">
+    <section id="brands" className="min-h-screen py-12 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Section: ICON + HEADING + SUBTITLE */}
         <motion.div
@@ -89,7 +89,7 @@ const Brands: React.FC<BrandsProps> = ({ isDark }) => {
             </motion.h2>
           </div>
 
-          {/* Subtitle (below heading only) */}
+          {/* Subtitle */}
           <motion.p
             className={`text-lg ${isDark ? 'text-gray-300' : 'text-blue-700'} leading-relaxed ml-16`}
             initial={{ opacity: 0, y: 30 }}
@@ -150,9 +150,7 @@ const Brands: React.FC<BrandsProps> = ({ isDark }) => {
                 >
                   {brand.slogan}
                 </p>
-                <p
-                  className={`${isDark ? 'text-gray-300' : 'text-blue-800'} leading-relaxed mb-4 text-sm`}
-                >
+                <p className={`${isDark ? 'text-gray-300' : 'text-blue-800'} leading-relaxed mb-4 text-sm`}>
                   {brand.description}
                 </p>
                 <div className="space-y-2">

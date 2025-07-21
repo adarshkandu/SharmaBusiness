@@ -18,7 +18,7 @@ const fadeInUp = {
   transition: { duration: 0.4, ease: 'easeInOut' },
 };
 
-const ContactSection = ({ isDark }: { isDark: boolean }) => {
+const Contact = ({ isDark }: { isDark: boolean }) => {
   const contactDetails = [
     {
       icon: HiPhone,
@@ -68,8 +68,7 @@ const ContactSection = ({ isDark }: { isDark: boolean }) => {
   ];
 
   return (
-    <section id="contact" className="pb-10 px-7">
-      {/* Heading Start */}
+    <section id="contact" className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 scroll-mt-20">
       <motion.div
         className="mb-10"
         initial={{ opacity: 0, y: -30 }}
@@ -96,11 +95,8 @@ const ContactSection = ({ isDark }: { isDark: boolean }) => {
           We’d love to hear from you!
         </p>
       </motion.div>
-      {/* Heading End */}
 
-      {/* Contact Content */}
       <div className="grid md:grid-cols-2 gap-6">
-        {/* Contact Info */}
         <div className="grid gap-4">
           {contactDetails.map((contact, index) => (
             <motion.div
@@ -136,9 +132,7 @@ const ContactSection = ({ isDark }: { isDark: boolean }) => {
           ))}
         </div>
 
-        {/* Social & Business Hours */}
         <div className="grid gap-4">
-          {/* Business Hours */}
           <motion.div
             className={`p-4 rounded-2xl h-full ${
               isDark
@@ -166,7 +160,6 @@ const ContactSection = ({ isDark }: { isDark: boolean }) => {
             </ul>
           </motion.div>
 
-          {/* Social Icons */}
           <div className="grid grid-cols-2 gap-3">
             {socialLinks.map((social, index) => (
               <motion.a
@@ -200,4 +193,4 @@ const ContactSection = ({ isDark }: { isDark: boolean }) => {
   );
 };
 
-export default ContactSection;
+export default Contact;

@@ -22,7 +22,7 @@ const Mission: React.FC<MissionProps> = ({ isDark }) => {
   };
 
   return (
-    <section id="mission" className={`py-12 ${isDark ? 'bg-gray-800/50' : 'bg-blue-50/40'} scroll-mt-20`}>
+    <section id="mission" className={`min-h-screen py-12 ${isDark ? 'bg-gray-800/50' : 'bg-blue-50/40'} scroll-mt-20`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="mb-8"
@@ -67,7 +67,7 @@ const Mission: React.FC<MissionProps> = ({ isDark }) => {
               reliability, and integrity</span>. We aim to understand and anticipate client needs, offering tailored solutions 
               with a client-first approach, and fostering lasting relationships with customers, partners, and communities.
             </p>
-            
+
             <motion.div 
               className="grid md:grid-cols-3 gap-4"
               variants={staggerContainer}

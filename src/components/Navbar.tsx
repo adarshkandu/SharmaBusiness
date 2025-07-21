@@ -11,6 +11,7 @@ interface NavbarProps {
   toggleTheme: () => void;
   setIsMenuOpen: (open: boolean) => void;
   scrollToSection: (section: string) => void;
+  setActiveSection: (section: string) => void;
 }
 
 const Navbar: React.FC<NavbarProps> = ({
@@ -21,6 +22,7 @@ const Navbar: React.FC<NavbarProps> = ({
   toggleTheme,
   setIsMenuOpen,
   scrollToSection,
+  setActiveSection,
 }) => {
   const navLinks = [
     { id: 'home', label: 'Home' },
@@ -31,21 +33,31 @@ const Navbar: React.FC<NavbarProps> = ({
     { id: 'contact', label: 'Contact' },
   ];
 
-  // Fix for mobile scroll + menu close
-  const handleMobileClick = (id: string) => {
-    const element = document.getElementById(id);
-    const offset = 80;
+  const offset = 80;
 
+  // Desktop scroll
+  const handleLinkClick = (id: string) => {
+    const element = document.getElementById(id);
     if (element) {
       const y = element.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top: y, behavior: 'smooth' });
-
-      // Delay menu close and trigger scroll event to update activeSection correctly
-      setTimeout(() => {
-        window.dispatchEvent(new Event('scroll'));
-        setIsMenuOpen(false);
-      }, 600); // match scroll duration
+      setActiveSection(id);
     }
+  };
+
+  // Mobile scroll + close hamburger
+  const handleMobileClick = (id: string) => {
+    setIsMenuOpen(false); // close first
+
+    // slight delay to allow DOM update before scroll
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        const y = element.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+        setActiveSection(id);
+      }
+    }, 50); // minimum delay to allow menu close
   };
 
   return (
@@ -63,11 +75,14 @@ const Navbar: React.FC<NavbarProps> = ({
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-
           {/* Logo */}
           <div
             className="flex items-center space-x-3 cursor-pointer"
-            onClick={() => scrollToSection('home')}
+            onClick={() => {
+              scrollToSection('home');
+              setActiveSection('home');
+              setIsMenuOpen(false);
+            }}
           >
             <img src={logo} alt="Logo" className="w-12 h-12 object-contain" />
             <span className="hidden md:inline text-xl font-bold bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">
@@ -80,13 +95,13 @@ const Navbar: React.FC<NavbarProps> = ({
             {navLinks.map((link) => (
               <button
                 key={link.id}
-                onClick={() => scrollToSection(link.id)}
+                onClick={() => handleLinkClick(link.id)}
                 className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 group ${
                   activeSection === link.id
                     ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/30 shadow-md'
                     : isDark
-                      ? 'text-gray-300 hover:text-white hover:bg-gray-800/50'
-                      : 'text-gray-600 hover:text-black hover:bg-blue-100/50'
+                    ? 'text-gray-300 hover:text-white hover:bg-gray-800/50'
+                    : 'text-gray-600 hover:text-black hover:bg-blue-100/50'
                 }`}
               >
                 {link.label}
@@ -94,7 +109,7 @@ const Navbar: React.FC<NavbarProps> = ({
             ))}
           </div>
 
-          {/* Theme Toggle + Hamburger */}
+          {/* Theme + Hamburger */}
           <div className="flex items-center space-x-3">
             <button
               onClick={toggleTheme}
@@ -141,8 +156,8 @@ const Navbar: React.FC<NavbarProps> = ({
                       activeSection === link.id
                         ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/30 shadow-md'
                         : isDark
-                          ? 'text-gray-300 hover:text-white hover:bg-gray-700'
-                          : 'text-gray-600 hover:text-black hover:bg-blue-100/50'
+                        ? 'text-gray-300 hover:text-white hover:bg-gray-700'
+                        : 'text-gray-600 hover:text-black hover:bg-blue-100/50'
                     }`}
                   >
                     {link.label}
