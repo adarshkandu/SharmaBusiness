@@ -57,16 +57,18 @@ const Brands: React.FC<BrandsProps> = ({ isDark }) => {
   return (
     <section id="brands" className="py-12 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Top Section: ICON + HEADING + SUBTITLE */}
         <motion.div
-          className="mb-8"
+          className="mb-12 max-w-3xl"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
           viewport={{ once: true }}
         >
-          <div className="flex items-center mb-6">
+          {/* Icon + Heading */}
+          <div className="flex items-center mb-2">
             <motion.div
-              className="relative"
+              className="relative w-fit mr-4"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
             >
@@ -75,27 +77,31 @@ const Brands: React.FC<BrandsProps> = ({ isDark }) => {
                 <HiStar className="w-8 h-8 text-white" />
               </div>
             </motion.div>
+
             <motion.h2
-              className={`text-3xl md:text-4xl font-bold ml-4 ${isDark ? 'text-white' : 'text-gray-900'}`}
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              className={`text-3xl md:text-4xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
               Our Brands
             </motion.h2>
           </div>
+
+          {/* Subtitle (below heading only) */}
           <motion.p
-            className={`text-lg ${isDark ? 'text-gray-300' : 'text-blue-700'} max-w-3xl mx-auto leading-relaxed`}
+            className={`text-lg ${isDark ? 'text-gray-300' : 'text-blue-700'} leading-relaxed ml-16`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
             Three distinct brands, one unified vision of excellence across entertainment, travel, and financial consulting.
           </motion.p>
         </motion.div>
 
+        {/* BRAND CARDS */}
         <motion.div
           className="grid lg:grid-cols-3 gap-6"
           variants={staggerContainer}

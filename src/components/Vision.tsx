@@ -8,8 +8,8 @@ interface VisionProps {
 
 const Vision: React.FC<VisionProps> = ({ isDark }) => {
   return (
-    <section id="vision" className="py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="vision" className="py-12 min-h-screen flex items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <motion.div 
           className="mb-8"
           initial={{ opacity: 0, y: 50 }}
@@ -38,10 +38,11 @@ const Vision: React.FC<VisionProps> = ({ isDark }) => {
               Our Vision
             </motion.h2>
           </div>
+
           <motion.div 
             className={`max-w-4xl mx-auto p-6 rounded-3xl ${
               isDark ? 'bg-gray-800/50 border border-gray-700' : 'bg-blue-50/60 border border-blue-200'
-            } backdrop-blur-sm shadow-2xl`}
+            } backdrop-blur-sm shadow-2xl space-y-4`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -50,8 +51,13 @@ const Vision: React.FC<VisionProps> = ({ isDark }) => {
           >
             <p className={`text-lg md:text-xl ${isDark ? 'text-gray-300' : 'text-blue-800'} leading-relaxed`}>
               Dr. Ankit P. Sharma envisions Sharma Business achieving <span className="font-bold text-blue-600">global recognition</span> by 
-              delivering exceptional services and groundbreaking solutions across multiple industries. The goal is to create a 
-              sustainable, customer-centric ecosystem where each brand reaches its full potential and contributes to long-term growth.
+              delivering exceptional services and groundbreaking solutions across multiple industries.
+            </p>
+            <p className={`text-lg md:text-xl ${isDark ? 'text-gray-400' : 'text-blue-700'} leading-relaxed`}>
+              Through innovation, integrity, and customer dedication, we aim to redefine industry standards and empower communities worldwide.
+            </p>
+            <p className={`text-lg md:text-xl ${isDark ? 'text-gray-400' : 'text-blue-700'} leading-relaxed`}>
+              Our commitment is not only toward business excellence but also to environmental sustainability, digital transformation, and human values.
             </p>
           </motion.div>
         </motion.div>

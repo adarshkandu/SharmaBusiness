@@ -98,13 +98,11 @@ const About: React.FC<AboutProps> = ({ isDark }) => {
               isDark ? 'bg-gray-700/50 border border-gray-600' : 'bg-white border border-blue-200'
             } shadow-2xl`}>
               <div className="text-center">
-                <motion.div
+                <div
                   className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full flex items-center justify-center"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 >
                   <HiOfficeBuilding className="w-10 h-10 text-white" />
-                </motion.div>
+                </div>
                 <h4 className={`text-xl font-bold mb-3 ${isDark ? 'text-white' : 'text-gray-900'}`}>
                   800+ Happy Clients
                 </h4>
